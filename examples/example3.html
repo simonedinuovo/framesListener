@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FramesListener Example #3</title>
+</head>
+<body>
+<button onclick="sendThis(this)">Button1</button>
+<button onclick="sendThis(this)">Button2</button>
+<button onclick="sendThis(this)">Button3</button>
+<button onclick="sendThis(this)">Button4</button>
+<button onclick="sendThis(this)">Button5</button>
+
+<script src="../framesListener/framesListener.js"></script>
+<script>
+    function sendThis(el){
+        var msg = {
+            "header" : "menu",
+            "body" : el.innerHTML
+        }
+        framesListener.send(msg);
+    }
+</script>
+</body>
+</html>

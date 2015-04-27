@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>framesListener</title>
+    <style>
+        body{
+            margin:0;
+
+        }
+        .key{
+            width:30px;
+            height:20px;
+            background:#ccc;
+            border:1px solid #fff;
+            position:absolute;
+            display:none;
+            transform:translate(0,0);
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<h1>FramesListener Page Example: </h1>
+<h2>Example1 : Mouse Move Input</h2>
+<iframe src="examples/example1.html" id="example1"></iframe>
+<p id="example1Text">
+    <b>Coords</b>:<i class="x"></i>,<i class="y"></i>
+</p>
+<hr>
+<h2>Example2 : contextmenu Input</h2>
+<iframe src="examples/example2.html" id="example2"></iframe>
+<div id="example2Text">
+    <b>Coords</b>:<i class="x"></i>,<i class="y"></i>
+    <div class="key">
+    </div>
+</div>
+
+<hr>
+<h2>Example3 : Button Menu</h2>
+<iframe src="examples/example3.html" id="example3"></iframe>
+<p id="example3Text">
+    <b>Example3 says</b><span></span>
+</p>
+<hr>
+<h2>Example4 : Interoperability and reusability</h2>
+<iframe src="examples/example3.html" id="example4-1"></iframe>
+<iframe src="examples/example4.html" id="example4-2"></iframe>
+<hr>
+<h2>Example5 : Performance matter</h2>
+<iframe src="examples/example5.html" id="example5"></iframe>
+<div id="example5Text">
+    <div class="key">
+    </div>
+</div>
+<hr>
+<h2>Example6 : More and more!</h2>
+<iframe src="examples/example5.html" id="example6-1"></iframe>
+<iframe src="examples/example4.html" id="example6-2"></iframe>
+<div id="example6Text">
+    <div class="key">
+    </div>
+</div>
+
+<script src="framesListener/framesListener.js"></script>
+<script>
+    var example1 = document.getElementById("example1");
+    var example1TextX = document.querySelectorAll("#example1Text .x")[0];
+    var example1TextY = document.querySelectorAll("#example1Text .y")[0];
+    var example2 = document.getElementById("example2");
+    var example2TextX = document.querySelectorAll("#example2Text .x")[0];
+    var example2TextY = document.querySelectorAll("#example2Text .y")[0];
+    var example3 = document.getElementById("example3");
+    var example3Text = document.querySelectorAll("#example3Text span")[0];
+    var example4_1 = document.getElementById("example4-1");
+    var example4_2 = document.getElementById("example4-2");
+    var example5 = document.getElementById("example5");
+    var example6_1 = document.getElementById("example6-1");
+    var example6_2 = document.getElementById("example6-2");
+    var key = document.querySelectorAll("#example2Text .key")[0];
+    var key2 = document.querySelectorAll("#example5Text .key")[0];
+    var key3 = document.querySelectorAll("#example6Text .key")[0];
+    var bodyRect = document.body.getBoundingClientRect();
+    var elemRect = example2.getBoundingClientRect();
+    var offsetTop   = elemRect.top - bodyRect.top;
+    var offsetLeft   = elemRect.left - bodyRect.left;
+    var elemRect5 = example5.getBoundingClientRect();
+    var offsetTop5   = elemRect5.top - bodyRect.top;
+    var offsetLeft5   = elemRect5.left - bodyRect.left;
+    var elemRect6 = example6_1.getBoundingClientRect();
+    var offsetTop6   = elemRect6.top - bodyRect.top;
+    var offsetLeft6   = elemRect6.left - bodyRect.left;
+    example1.onload = function() {
+        framesListener.listen(example1,"mousemove",function(e, body){
+            var top = body.clientY;
+            var left = body.clientX;
+            example1TextX.innerHTML = left;
+            example1TextY.innerHTML = top;
+        })
+    };
+    example2.onload = function() {
+        framesListener.listen(example2,"contextmenu",function(e, body){
+            var top = body.clientY + offsetTop + 20;
+            var left = body.clientX + offsetLeft;
+            key.style.display = "block";
+            key.style.transform = "translate(" + left + "px," + top + "px)";
+            example2TextX.innerHTML = body.clientX;
+            example2TextY.innerHTML = body.clientY;
+        })
+    };
+    example3.onload = function() {
+        framesListener.listen(example3,"menu",function(e, body){
+            example3Text.innerHTML = body;
+        });
+    };
+    example4_1.onload = function() {
+        framesListener.listen(example4_1,"menu",function(e, body){
+            var msg = {
+                header : "text",
+                body : body
+            }
+            example4_2.contentWindow.postMessage(msg,framesListener.origin);
+        });
+    };
+    example5.onload = function() {
+        framesListener.listen(example5,"mousemove",function(e, body){
+            var top = body.clientY + offsetTop5 + 20;
+            var left = body.clientX + offsetLeft5;
+            key2.style.display = "block";
+            key2.style.transform = "translate(" + left + "px," + top + "px)";
+        })
+    };
+    example6_1.onload = function() {
+        framesListener.listen(example6_1,"mousemove",function(e, body){
+            var top = body.clientY + offsetTop6 + 20;
+            var left = body.clientX + offsetLeft6;
+            key3.style.display = "block";
+            key3.style.transform = "translate(" + left + "px," + top + "px)";
+            var msg = {
+                header : "text",
+                body : left + "," + ( top - offsetTop6 - 20 )
+            }
+            example6_2.contentWindow.postMessage(msg,framesListener.origin);
+        });
+    };
+</script>
+<script>
+    document.addEventListener('contextmenu',function(e){
+        e.preventDefault();
+    },false);
+</script>
+</body>
+</html>

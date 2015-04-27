@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FramesListener Example #4</title>
+</head>
+<body>
+<div id="text"></div>
+
+<script src="../framesListener/framesListener.js"></script>
+<script>
+    console.warn(window.parent);
+    var text = document.getElementById("text");
+    framesListener.listen(null,"text",function(e,body){
+        text.innerHTML = body;
+    })
+</script>
+</body>
+</html>

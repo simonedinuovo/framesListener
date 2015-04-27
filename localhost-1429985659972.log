@@ -1,0 +1,30 @@
+message send succesfully from  http://localhost:63342/framesListener/examples/example1.html
+message received by  http://localhost:63342/framesListener/framesListener.html 
+ from: 
+ http://localhost:63342/framesListener/examples/example1.html
+message not accepted! 
+
+event.source.location.href  http://localhost:63342/framesListener/examples/example1.html  not equal to el.contentWindow.location.href
+http://localhost:63342/framesListener/examples/example2.html true
+message received by  http://localhost:63342/framesListener/framesListener.html 
+ from: 
+ http://localhost:63342/framesListener/examples/example1.html
+message accepted by  http://localhost:63342/framesListener/framesListener.html 
+ from: 
+ http://localhost:63342/framesListener/examples/example1.html
+callback launched! by http://localhost:63342/framesListener/framesListener.html
+message send succesfully from  http://localhost:63342/framesListener/examples/example1.html
+message received by  http://localhost:63342/framesListener/framesListener.html 
+ from: 
+ http://localhost:63342/framesListener/examples/example1.html
+message not accepted! 
+
+event.source.location.href  http://localhost:63342/framesListener/examples/example1.html  not equal to el.contentWindow.location.href
+http://localhost:63342/framesListener/examples/example2.html true
+message received by  http://localhost:63342/framesListener/framesListener.html 
+ from: 
+ http://localhost:63342/framesListener/examples/example1.html
+message accepted by  http://localhost:63342/framesListener/framesListener.html 
+ from: 
+ http://localhost:63342/framesListener/examples/example1.html
+callback launched! by http://localhost:63342/framesListener/framesListener.html
