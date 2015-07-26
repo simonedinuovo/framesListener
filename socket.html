@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+    var exampleSocket = new WebSocket("ws://127.0.0.1:8080");
+    exampleSocket.onopen = function (event) {
+        console.log("opened");
+        console.log(event);
+        exampleSocket.send( Date.now() );
+    };
+    exampleSocket.onmessage = function (event) {
+        console.log(Date.now() - new Date(Number(event.data)));
+        exampleSocket.send( Date.now() );
+    }
+</script>
+</body>
+</html>

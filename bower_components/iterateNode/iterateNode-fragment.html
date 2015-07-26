@@ -13,6 +13,16 @@
             user-select: none;
             -webkit-tap-highlight-color:'transparent';
         }
+        .caret {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-top: 4px dashed;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
         a.caretA{
             padding:10px;
         }
@@ -34,21 +44,43 @@
             background:white;
             color:black;
         }
+        li{
+            float:left;
+            clear:both;
+            margin:3px 0;
+        }
         body{
-            font-size:10px;
+            font-size:16px;
         }
         pre{
-            display: inline;
+            display: block;
             padding: 0;
             margin: 0;
-            font-size:10px;
+            float:left;
+            width:100%;
+        }
+        .simpleHide{
+            display:none;
+        }
+        .iterateNode-sanitize-key{
+
+        }
+        .iterateNode-sanitize-key-value{
+
+        }
+        .iterateNode-sanitize-key-typeof-value{
+
+        }
+        .iterateNode-sanitize-key-typeof{
+
+        }
+        .iterateNode-sanitize-separator1{
+
         }
     </style>
 </head>
 <body>
-    <div id="parseJs">
 
-    </div>
     <button onclick="action('anlyzJson')">Analyze Json</button>
     <button onclick="action('anlyzDocument')">Analyze documentElement</button>
     <button onclick="action('imadiv')">Analyze imadiv</button>
@@ -58,7 +90,12 @@
             <b>imadiv<span>imadiv</span></b>
         </p>
     </div>
+    <pre id="parseJs">
+
+    </pre>
     <script src="iterateNode-documentFragment.js"></script>
+    <script src="createCaret.js"></script>
+    <script src="sanitize.js"></script>
     <script>
         var parseJsObject = document.getElementById("parseJs");
         function action(type){
@@ -118,14 +155,17 @@
                         }
                     };
                     var parseJs = iterateNode(myJSONObject);
+                    parseJsObject.innerHTML = "";
                     parseJsObject.appendChild(parseJs);
                     break;
                 case "anlyzDocument":
-                    var parseJs = iterateNode(document.body);
+                    var parseJs = iterateNode(document);
+                    parseJsObject.innerHTML = "";
                     parseJsObject.appendChild(parseJs);
                     break;
                 case "imadiv":
                     var parseJs = iterateNode(document.getElementById("imadiv"));
+                    parseJsObject.innerHTML = "";
                     parseJsObject.appendChild(parseJs);
                 default:
                     break;

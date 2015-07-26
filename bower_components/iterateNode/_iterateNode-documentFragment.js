@@ -20,25 +20,29 @@ var iterateNode = function(jsObject,countObj){
     var countObj = countObj ? countObj : "";
     for(var k in jsObject){
         (function(k){
-            //typeNode = Object.prototype.toString.call(jsObject[k]);
             typeNode = Object.prototype.toString.call(jsObject[k]);
             var li = document.createElement("li");
             li.id="iterateNode-object-" + countObj + count;
             li.className="iterateNode-object";
             //<b class='iterateNode-sanitize-key'>key:</b>
             //<b class='iterateNode-sanitize-key-typeof'>typeof:</b>
-            li.innerHTML = "<b class='iterateNode-sanitize-key'>key:</b><i class='iterateNode-sanitize-key-value'>"+ k +
-                 "</i><span class='iterateNode-sanitize-separator1'> -- </span>" +
-                 "<b class='iterateNode-sanitize-key-typeof'>typeof:</b>" +
+            li.innerHTML = "<i class='iterateNode-sanitize-key-value'>"+ k +
+                 "</i><span class='iterateNode-sanitize-separator'> -- </span>" +
                  "<i class='iterateNode-sanitize-key-typeof-value'>"+ typeNode + "</i>";
 
-            if( typeof jsObject[k] === "object" && jsObject[k] )
+            if( typeNode === "[object Object]" || typeNode === "[object Array]" || allowedJSnodes.indexOf(typeNode) > -1
+                || typeNode.substr(0,"[object HTML".length) == "[object HTML"
+                || typeNode.substr(0,"[object DOM".length) == "[object DOM"
+              )
             {
                 var caretA = createCaret(li,jsObject[k],countObj + count);
                 li.appendChild(caretA);
             }
-            else if ( sanitizedObjects.indexOf(k) < 0 ){
-                li.innerHTML += jsObject[k] ? "<span class='iterateNode-sanitize-separator2'> -- </span>" + jsObject[k] : " null";
+            if ( typeNode === "[object Function]" || ( typeNode === "[object String]" && sanitizedObjects.indexOf(k) < 0 ) ||
+                typeNode === "[object Number]" ||
+                typeNode === "[object Boolean]"
+                ){
+                li.innerHTML += jsObject[k] ? " -- " + jsObject[k] : " null";
             }
             if ( sanitizedObjects.indexOf(k) > -1 )
             {
