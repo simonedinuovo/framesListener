@@ -42,7 +42,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-node_modules
-!node_modules/socket-connection
+/node_modules/*
+!/node_modules/socket-connection
+!/node_modules/socket-connection/*
 .idea/workspace.xml
 npm-debug.log

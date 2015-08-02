@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<iframe src=""></iframe>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    var iframe = document.getElementsByTagName('iframe')[0],
+        iframe.onload=function(){
+            iframe.contentWindow.addEventListener('click', function(e){
+                console.log(e.target);
+            });
+        }
+    iframe.src="example.html";
+    /*$('iframe').load(function(){
+        $(this.contentWindow).on('click', function(event) {
+            console.log(event.target);
+            $(event.target).append('<b><i>Sono io!</i></b>')
+        });
+    });
+    $('iframe').attr("src","example.html");*/
+</script>
+</body>
+</html>

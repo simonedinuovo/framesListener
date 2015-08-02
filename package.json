@@ -1,0 +1,15 @@
+{
+    "name": "framesListener",
+    "version": "0.0.1",
+    "devDependencies": {
+    },
+    "homepage": "#",
+    "description": "HTML Frames Listener",
+    "repository": "#",
+    "author": {
+        "name": "Simon Savage",
+        "email": "simonsavagerock@gmail.com"
+    },
+    "paths": {
+    }
+}
